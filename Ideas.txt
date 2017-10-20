@@ -2,3 +2,26 @@ Drop system for smaller streamers
 	with enough points you can use on song requests or shoutouts
 
 Ad notification for turn off ad blocker for streamers you like
+
+
+Extension when buy merch from streamer you get icon for it
+
+Seperate app - track purchase with qr 
+	Link app to your account 
+
+Twitch game
+
+
+More app ideas
+
+	surpise me - Give fast growing smallish streamer
+	After 5-10 mins seem if they like it then recommend to others similar
+
+		Give a like system  - 2 button choice?
+
+		Give data to streamers - option
+
+		Give option to streamers if they want surpise me
+
+		
+
