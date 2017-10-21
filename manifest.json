@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Surprise me!",
-	"version": "1.0",
+	"version": "1.1",
 	"description": "twitch api extension",
 /*
 	"page_action": {
@@ -18,7 +18,9 @@
   	[
   		"storage",
   		"tabs",
-  		"identity"
+  		"identity",
+  		"http://*/*",
+  		"https://*/*"
   	],
 
 	 "background":{

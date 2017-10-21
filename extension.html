@@ -6,7 +6,7 @@
  <link rel="stylesheet" href="styles.css">
 </head>
 
-	<body style="width: 300px; height: 300px; overflow:hidden;">
+	<body style="width: 300px; height: 300px; overflow:hidden;background-color:#faf9fa">
 
 		<!--
     	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -29,15 +29,16 @@
     		</div>
 
 
-    		<div>
+    		<div style="display:none" id="notAunthenticated">
                 <button id ="authButton">butts</button>
 
     		</div>
     		
     		<div id="authenticated"style="display:none">
     			<center><h1 id="username"> Username</h1></center>
-    			<center><img src=""  height="125" width="125"> </center>
+    			<center><img id="profilePic" src=""  height="125" width="125"> </center>
 
+                <center><button id="logOut" >UNAUTH</button></center>
     		</div>
     	</div>
 
@@ -62,6 +63,10 @@
     			</form>	
     		</div>
 
+
+            <div id="clicky" class="alilAboveBar">
+                <h5 style="float:right;vertical-align: bottom;">click me when done!</h5>
+            </div>
     	</div>
 
 

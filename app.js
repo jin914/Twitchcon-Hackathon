@@ -42,6 +42,40 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 
  window.onload = function() {
+
+  var yoken;
+
+
+  function unAuth(){
+
+    console.log(yoken);
+    var newURL = 'https://api.twitch.tv/kraken/oauth2/revoke?client_id=m7yllxccpzvfrjfmkwrx52hfmqgtgj&token='+yoken;
+    //chrome.tabs.create({url: newURL});
+
+    $.ajax({
+      method: 'POST',   
+      url: newURL,
+      headers:{},
+      success: function(data){
+        console.log("Success! Should be broken token!");
+        chrome.storage.sync.remove('authToken');
+        console.log(data);
+      },
+      error: function(data){
+        console.log("Error!");
+        console.log(data);
+      }
+
+    });
+  }
+  document.getElementById("logOut").onclick=unAuth;
+
+
+
+
+
+
+
   var userData = (user) =>{
   user
 }
@@ -50,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }
     var dat;
      function getUser (token, success){
+       console.log('auth', token);
   $.ajax({
     method: 'GET',
     url: 'https://api.twitch.tv/kraken/',
@@ -60,18 +95,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     success: function(data) {
     console.log('Success!')
-    console.log(data);
-    console.log(data.user_name);
-    console.log(data.login);
-    console.log(data.id);
-    console.log(data['token'].user_name);
-    console.log(data.token.user_name);
+    if(data.token.valid){
+      console.log(data);
+      console.log(data.user_name);
+      console.log(data.login);
+      console.log(data.id);
+      console.log(data['token'].user_name);
+      console.log(data.token.user_name);
     //console.log(eval(data));
     //JSON.parse(data)
     //localStorage.setItem('token', data.id_token);
-    fetchUserData(data.token.user_name);
-    dat = data;
-  }
+      fetchUserData(data.token.user_name);
+      dat = data;
+    
+      document.getElementById("authenticated").style.display = "block";
+      }
+      else{
+        document.getElementById('notAunthenticated').style.display="block";
+
+      }
+    },
+    error: function(data){
+      document.getElementById("notAunthenticated").style.display = "block";
+
+    }
   });
  }
 
@@ -86,6 +133,13 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("userdata success");
 
         console.log(data);
+        document.getElementById('username').innerHTML =data.display_name;
+        if(data.logo==null){
+          document.getElementById("profilePic").src='defaultTwitch.png';
+        }
+        else{
+          document.getElementById("profilePic").src = data.logo;
+        }
 
 
       }
@@ -116,17 +170,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    function authTwitch()
+    function startUp()
     {
-      var newURL = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=m7yllxccpzvfrjfmkwrx52hfmqgtgj&redirect_uri=https://diiebinleffonfbhchpfadahbaonjimf.chromiumapp.org/&scope=user_read&scope=user_block_read&scope=user_subscriptions"
+      //var newURL = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=m7yllxccpzvfrjfmkwrx52hfmqgtgj&redirect_uri=https://diiebinleffonfbhchpfadahbaonjimf.chromiumapp.org/&scope=user_read&scope=user_block_read&scope=user_subscriptions"
         //chrome.tabs.create({url: newURL});
         var token;
       chrome.storage.sync.get('authToken', function (result) {
       token=  result.authToken;
-      console.log(token);
+      console.log('authToken', token);
       getUser(token,userData);
       console.log(dat);
+      yoken = token;
     });
+    }
+    startUp();
+    function authTwitch(){
+      var newURL = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=m7yllxccpzvfrjfmkwrx52hfmqgtgj&redirect_uri=https://diiebinleffonfbhchpfadahbaonjimf.chromiumapp.org/&scope=user_read&scope=user_block_read&scope=user_subscriptions"
+        chrome.tabs.create({url: newURL});
+        
+
     }
     document.getElementById('authButton').onclick = authTwitch;
 
