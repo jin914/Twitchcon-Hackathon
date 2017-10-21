@@ -107,4 +107,46 @@ function showIndex() {
     });
  }
 
+/* api: 
+  GetUsers:
+   id -> (user ID)
+   login -> (user login)
+   display_name
+   view_count (int) -> number of followers
+   
+  GetStreams:
+   language -> (language of the stream)
+   type -> ("all", "live", or "vodcast")
+   id -> (stream ID)
+   title -> (stream title)
+   viewer_count -> (number of followers) 
+  
+  */
+  
+function findStream(){
+   var at_least = document.getElementById("at_least").innerHTML;
+   var at_most = docuument.getElementById("at_most").innerHTML;
+   var total_streams = /*total streams ATM*/;
+   var j = 0; //tracks # of streams <=500 viewers
+   var views = [];
+   for(int i=0; i<total_streams; i++){
+      if(/*stream #i has a */ viewer_count>=at_least 
+         && viewer_count<=at_most && stream_type=="live"){
+         views[j] = id; //stream ID
+         j++;
+      }
+   }
+   //now, j = total # of streams w/ at_least<= viewers <=at_most
+   
+   var r1 = new Math.random(); //random # from 0 to 1
+   
+   var out = j*r1; // scales it to total # streams <= 500 viewers
+  
+   var out_stream = views[out]; //this is the stream ID to watch
+   
+   //link to a new page https://go.twitch.tv/[out_stream]
+}
+
+
+
 document.getElementById('xd').addEventListener("click", showIndex);
