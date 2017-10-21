@@ -44,6 +44,35 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.tabs.create({url: 'http://google.com'});
     }
     document.getElementById('alertButton').onclick = myFunction;
+
+    function page2(){
+      document.getElementById('userTab').style.display='none';
+      document.getElementById('surpriseMeTab').style.display='none';
+      document.getElementById('searchTab').style.display = 'block';
+    }
+    document.getElementById('search').onclick = page2;
+    document.getElementById('searchIcon').onclick = page2;
+
+    function page3(){
+      document.getElementById('userTab').style.display='none';
+      document.getElementById('searchTab').style.display='none';
+      document.getElementById('surpriseMeTab').style.display = 'block';
+
+
+    }
+
+    document.getElementById('surpriseMe').onclick = page3;
+
+    function page1(){
+      document.getElementById('searchTab').style.display='none';
+      document.getElementById('surpriseMeTab').style.display='none';
+      document.getElementById('userTab').style.display = 'block';
+
+
+    }
+
+    document.getElementById('user').onclick = page1;
+    document.getElementById('userIcon').onclick = page1;
 }
 
 function showIndex() {
