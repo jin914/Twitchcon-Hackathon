@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('userIcon').onclick = page1;
 
 
-
+    //findStream is only....? search or surprise me?
     function findStream(){
       if(document.getElementById("dontCare").checked == false && document.getElementById("smallStreams").checked ==false){
         var at_least = document.getElementById("at_least").value;
