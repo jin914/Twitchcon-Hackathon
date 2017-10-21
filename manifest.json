@@ -1,0 +1,24 @@
+{
+	"manifest_version": 2,
+	"name": "Surprise me!",
+	"version": "1.0",
+	"description": "twitch api extension",
+/*
+	"page_action": {
+
+		"default_popup": "extension.html"
+	}*/
+	"browser_action": {
+    
+    "default_popup": "extension.html"
+  }
+/*
+	"background":{
+		"scripts": {"app.js"},
+		"persistent":false
+
+	}
+
+*/
+
+}
