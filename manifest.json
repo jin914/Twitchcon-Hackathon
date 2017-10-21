@@ -14,9 +14,21 @@
     "default_icon": "monkas.png"
   },
 
-  "background":{
-  	"scripts": ["background.js"]
-  }
+  "permissions":
+  	[
+  		"storage",
+  		"tabs",
+  		"identity"
+  	],
 
+	 "background":{
+	  "scripts": ["background.js"],
+	  "persistent": true
+	 },
+
+	 "background":{
+	  "scripts": ["token.js"],
+	  "persistent": false
+	 }
 
 }

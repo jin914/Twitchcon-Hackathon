@@ -1,3 +1,8 @@
+//import '/twitterAPI.js';
+//import './blank.js';
+
+
+
 /*
 function hello() {
   alert('hello ' + document.location.href);
@@ -37,6 +42,52 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 
  window.onload = function() {
+  var userData = (user) =>{
+  user
+}
+  var streamDatas = (streams) =>{
+  streams
+}
+    var dat;
+     function getUser (token, success){
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.twitch.tv/kraken/',
+    headers:{
+      'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
+      'Authorization': 'OAuth '+token
+    },
+
+    success: function(data) {
+    console.log('Success!')
+    console.log(data);
+    console.log(data.user_name);
+    console.log(data.login);
+    console.log(data.id);
+    console.log(data['token'].user_name);
+    console.log(data.token.user_name);
+    //console.log(eval(data));
+    //JSON.parse(data)
+    //localStorage.setItem('token', data.id_token);
+    dat = data;
+  }
+  });
+ }
+
+
+
+    var fetchStreams = (games, success) =>{
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.twitch.tv/kraken/streams?game=${games}',
+    headers:{
+      'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
+    },
+
+    success
+  });
+
+ }
     var a =0;
     function myFunction()
     {
@@ -44,6 +95,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('alertButton').textContent=a;
         chrome.tabs.create({url: 'http://google.com'});
     }
+
+    function authTwitch()
+    {
+      var newURL = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=m7yllxccpzvfrjfmkwrx52hfmqgtgj&redirect_uri=https://diiebinleffonfbhchpfadahbaonjimf.chromiumapp.org/&scope=user_read&scope=user_block_read&scope=user_subscriptions"
+        //chrome.tabs.create({url: newURL});
+        var token;
+      chrome.storage.sync.get('authToken', function (result) {
+      token=  result.authToken;
+      console.log(token);
+      getUser(token,userData);
+      console.log(dat);
+    });
+    }
+    document.getElementById('authButton').onclick = authTwitch;
 
 
     function disableForms(x){
@@ -211,4 +276,3 @@ function showIndex() {
 
 
 
-document.getElementById('xd').addEventListener("click", showIndex);
