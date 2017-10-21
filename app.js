@@ -45,7 +45,52 @@ document.addEventListener('DOMContentLoaded', function () {
   var out_stream;
   var yoken;
   var dalink;
-  
+  var bigQueryName=[];
+  var bigQueryId=[];
+  var theQuery= {};
+  var theID=0;
+
+
+
+
+
+  function specificData(){
+    console.log(theQuery['League of Legends']);
+    console.log(theQuery);
+
+    var gn = document.getElementById('game_name').value;
+      console.log(document.getElementById('game_name').value);
+      for (var i =  0; i < 50; i++) {
+          if(bigQueryName[i]==gn){
+            theID = bigQueryId[i];
+            page4();
+            break;
+
+          }
+      };
+
+  }
+
+  document.getElementById('finalButton').onclick=specificData;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   function unAuth(){
 
@@ -97,12 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
     success: function(data) {
     console.log('Success!')
     if(data.token.valid){
-      console.log(data);
-      console.log(data.user_name);
-      console.log(data.login);
-      console.log(data.id);
-      console.log(data['token'].user_name);
-      console.log(data.token.user_name);
+      
     //console.log(eval(data));
     //JSON.parse(data)
     //localStorage.setItem('token', data.id_token);
@@ -164,11 +204,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function makeQuery(){
-      
 
-      
+
+      $.ajax({
+        method: 'GET',
+        url: 'https://api.twitch.tv/kraken/games/top?limit=50',
+            headers:{
+      'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj'
+    },
+        success: function(data){
+          console.log("HERE IS THE QUERY");
+          console.log(data.top[0]);
+
+          for (var i = 0; i < 50; i++) {
+
+            bigQueryId.push(data.top[i].game._id);
+            bigQueryName.push(data.top[i].game.name);
+            
+          };
+    
+
+        }
+
+
+      })
+
     }
-
+    makeQuery();
+    console.log("finshed QUERY");
+    console.log(bigQueryName);
 
 
     //findStream is only....? search or surprise me?
@@ -178,12 +242,12 @@ document.addEventListener('DOMContentLoaded', function () {
       
 
      
-   
+    if(theID==0){
    var total_streams = 100 /*random streams to search for*/;
    
 
 
-   
+      
    //now, j = total # of streams w/ at_least<= viewers <=at_most
    
     var r1 = Math.random(); //random # from 0 to 1
@@ -196,6 +260,27 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log(out_stream);
    //link to a new page https://twitch.tv/[streamer_name]
    //https://twitch.tv += views[out].name;
+  }
+  else{
+
+    console.log("NEW");
+    var total_streams = 100 /*random streams to search for*/;
+   
+
+
+      
+   //now, j = total # of streams w/ at_least<= viewers <=at_most
+   
+    var r1 = Math.random(); //random # from 0 to 1
+    console.log(strums.data.length);
+    var out = Math.floor(Math.random() * (strums.data.length - 0 + 1)) + 0; 
+    // scales it to total # streams <= 500 viewers
+    console.log(out);
+  
+    out_stream= strums.data[out]; //this is the stream ID to watch
+    console.log(out_stream);
+
+  }
   
 }
 
@@ -210,15 +295,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    var fetchStreamsWithGames = (games, success) =>{
+    var fetchStreamsWithGames = (id, success) =>{
   $.ajax({
     method: 'GET',
-    url: 'https://api.twitch.tv/kraken/streams?game=${games}',
+    url: 'https://api.twitch.tv/helix/streams?game_id='+id,
     headers:{
       'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
     },
 
-    success
+    success: function(data){
+
+      list_of_streams = data;
+      console.log("LIST!");
+      console.log(list_of_streams);
+      pickStream(list_of_streams);
+      console.log(out_stream);
+      document.getElementById("streamerName").innerHTML=out_stream.channel.display_name;
+      document.getElementById("streamerPic").src=out_stream.channel.logo;
+      dalink=(out_stream.channel.url);
+    }
   });
 
  }
@@ -242,10 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     success: function(data){
         list_of_streams = data;
-        console.log(data);
-        console.log(data.streams);
-        console.log(data.streams[0]);
-        console.log(data.streams[0].game);
+        
         pickStream(list_of_streams);
         console.log(out_stream);
         console.log(out_stream);
@@ -261,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
   });
 
-  $(".normalButt").on('click', openStrum);
+  
 
  }
 
@@ -296,7 +388,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var newURL = "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=m7yllxccpzvfrjfmkwrx52hfmqgtgj&redirect_uri=https://diiebinleffonfbhchpfadahbaonjimf.chromiumapp.org/&scope=user_read&scope=user_block_read&scope=user_subscriptions"
         chrome.tabs.create({url: newURL});
         
-
     }
     document.getElementById('authButton').onclick = authTwitch;
 
@@ -357,6 +448,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('searchIcon').onclick = page2;
 
     function page3(){
+
+      document.getElementById("linkMe").onclick= openStrum;
       document.getElementById('userTab').style.display='none';
       document.getElementById('searchTab').style.display='none';
       document.getElementById('surpriseMeTab').style.display = 'block';
@@ -365,6 +458,20 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('surpriseMe').style.backgroundColor="#4b2494";
       document.getElementById('search').style.backgroundColor = "#6441a5";
       fetchStreams();
+
+    }
+
+    function page4(){
+      fetchStreamsWithGames(theID);
+      document.getElementById("linkMe").onclick= openStrum;
+      document.getElementById('userTab').style.display='none';
+      document.getElementById('searchTab').style.display='none';
+      document.getElementById('surpriseMeTab').style.display = 'block';
+
+      document.getElementById('user').style.backgroundColor="#6441a5";
+      document.getElementById('surpriseMe').style.backgroundColor="#4b2494";
+      document.getElementById('search').style.backgroundColor = "#6441a5";
+      
 
     }
 
