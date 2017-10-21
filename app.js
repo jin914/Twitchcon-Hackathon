@@ -42,9 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 
  window.onload = function() {
-
+  var out_stream;
   var yoken;
-
+  var dalink;
+  
 
   function unAuth(){
 
@@ -161,6 +162,54 @@ document.addEventListener('DOMContentLoaded', function () {
     }*/
 
 
+
+    function makeQuery(){
+      
+
+      
+    }
+
+
+
+    //findStream is only....? search or surprise me?
+    
+    function pickStream(strums){
+      
+      
+
+     
+   
+   var total_streams = 100 /*random streams to search for*/;
+   
+
+
+   
+   //now, j = total # of streams w/ at_least<= viewers <=at_most
+   
+    var r1 = Math.random(); //random # from 0 to 1
+    console.log(strums.streams.length);
+    var out = Math.floor(Math.random() * (strums.streams.length - 0 + 1)) + 0; 
+    // scales it to total # streams <= 500 viewers
+    console.log(out);
+  
+    out_stream= strums.streams[out]; //this is the stream ID to watch
+    console.log(out_stream);
+   //link to a new page https://twitch.tv/[streamer_name]
+   //https://twitch.tv += views[out].name;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
     var fetchStreamsWithGames = (games, success) =>{
   $.ajax({
     method: 'GET',
@@ -173,7 +222,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
  }
+ 
+ 
     var list_of_streams;
+
+
+
+    function openStrum(){
+      console.log(dalink);
+      chrome.tabs.create({ url: dalink });
+    }
     var fetchStreams = (success) =>{
   $.ajax({
     method: 'GET',
@@ -188,6 +246,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(data.streams);
         console.log(data.streams[0]);
         console.log(data.streams[0].game);
+        pickStream(list_of_streams);
+        console.log(out_stream);
+        console.log(out_stream);
+        document.getElementById("streamerName").innerHTML=out_stream.channel.display_name;
+        document.getElementById("streamerPic").src=out_stream.channel.logo;
+        dalink=(out_stream.channel.url);
       },
       error: function(data){
         console.log("Error!");
@@ -197,7 +261,13 @@ document.addEventListener('DOMContentLoaded', function () {
     
   });
 
+  $(".normalButt").on('click', openStrum);
+
  }
+
+
+
+
     var a =0;
     function myFunction()
     {
