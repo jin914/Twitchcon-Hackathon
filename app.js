@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    var fetchStreams = (games, success) =>{
+    var fetchStreamsWithGames = (games, success) =>{
   $.ajax({
     method: 'GET',
     url: 'https://api.twitch.tv/kraken/streams?game=${games}',
@@ -157,6 +157,28 @@ document.addEventListener('DOMContentLoaded', function () {
     },
 
     success
+  });
+
+ }
+    var list_of_streams;
+    var fetchStreams = (success) =>{
+  $.ajax({
+    method: 'GET',
+    url: 'https://api.twitch.tv/kraken/streams/?limit=100',
+    headers:{
+      'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
+    },
+
+    success: function(data){
+        list_of_streams = data;
+        console.log(data);
+      },
+      error: function(data){
+        console.log("Error!");
+        console.log(data);
+      }
+
+    
   });
 
  }
@@ -256,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('user').style.backgroundColor="#6441a5";
       document.getElementById('surpriseMe').style.backgroundColor="#4b2494";
       document.getElementById('search').style.backgroundColor = "#6441a5";
-
+      fetchStreams();
 
     }
 
