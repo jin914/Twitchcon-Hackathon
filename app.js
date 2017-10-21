@@ -43,6 +43,19 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('alertButton').textContent=a;
         chrome.tabs.create({url: 'http://google.com'});
     }
+
+
+    function disableForms(){
+     
+      document.getElementById("atMost").disabled = true;
+      document.getElementById("atLeast").disabled = true;
+
+    }
+
+    document.getElementById('dontCare').onclick = disableForms;
+
+
+
     document.getElementById('alertButton').onclick = myFunction;
 
     function page2(){

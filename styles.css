@@ -1,3 +1,5 @@
+
+
 .butt1 {
 	background-color: #4b2494;
 	color: white;
@@ -51,8 +53,34 @@
 	height: 50px;
 	display:block;
 	
-	
 
 }
+
+.aboveBar {
+	position: fixed;
+	z-index: 100;
+	bottom: 75px;
+	left:0;
+	width: 100%;
+	height: 50px;
+	display:block;
+	border: none;
+
+}
+
+.normalButt {
+	background-color: #6441a5;
+	color: white;
+	border: none;
+	text-align: center;
+	display: inline-block;
+	width: 100px;
+	height: 50px;
+	padding: 0px;
+	margin: 0px;
+	outline: 0;
+}
+
+
 
 
