@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('userTab').style.display='none';
       document.getElementById('surpriseMeTab').style.display='none';
       document.getElementById('searchTab').style.display = 'block';
+
+      document.getElementById('user').style.backgroundColor="#6441a5";
+      document.getElementById('surpriseMe').style.backgroundColor="#6441a5";
+      document.getElementById('search').style.backgroundColor = "#4b2494";
     }
     document.getElementById('search').onclick = page2;
     document.getElementById('searchIcon').onclick = page2;
@@ -57,6 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('userTab').style.display='none';
       document.getElementById('searchTab').style.display='none';
       document.getElementById('surpriseMeTab').style.display = 'block';
+
+      document.getElementById('user').style.backgroundColor="#6441a5";
+      document.getElementById('surpriseMe').style.backgroundColor="#4b2494";
+      document.getElementById('search').style.backgroundColor = "#6441a5";
 
 
     }
@@ -67,6 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('searchTab').style.display='none';
       document.getElementById('surpriseMeTab').style.display='none';
       document.getElementById('userTab').style.display = 'block';
+
+      document.getElementById('user').style.backgroundColor="#4b2494";
+      document.getElementById('surpriseMe').style.backgroundColor="#6441a5";
+      document.getElementById('search').style.backgroundColor = "#6441a5";
 
 
     }
