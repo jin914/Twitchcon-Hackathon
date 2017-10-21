@@ -69,10 +69,28 @@ document.addEventListener('DOMContentLoaded', function () {
     //console.log(eval(data));
     //JSON.parse(data)
     //localStorage.setItem('token', data.id_token);
+    fetchUserData(data.token.user_name);
     dat = data;
   }
   });
  }
+
+ function fetchUserData(username, success) {
+    $.ajax({
+      method: 'GET',
+      url: 'https://api.twitch.tv/kraken/users/' + username,
+      headers: {
+        'Client-ID': '15vijk38vjlkj9kirhl904phbinisif'
+      },
+      success: function(data){
+        console.log("userdata success");
+
+        console.log(data);
+
+
+      }
+    });
+  };
 
 
 
@@ -95,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('alertButton').textContent=a;
         chrome.tabs.create({url: 'http://google.com'});
     }
+
+
 
     function authTwitch()
     {
