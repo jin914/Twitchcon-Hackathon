@@ -146,6 +146,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   };
 
+  /*
+    function topGames (success){
+      $.ajax({
+    method: 'GET',
+    url: 'https://api.twitch.tv/kraken/streams?game=${games}',
+    headers:{
+      'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
+    },
+
+    success
+  });
+
+    }*/
 
 
     var fetchStreamsWithGames = (games, success) =>{
@@ -164,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var fetchStreams = (success) =>{
   $.ajax({
     method: 'GET',
-    url: 'https://api.twitch.tv/kraken/streams/?limit=100',
+    url: 'https://api.twitch.tv/kraken/streams/?limit=100&offset=300',
     headers:{
       'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
     },
@@ -172,6 +185,9 @@ document.addEventListener('DOMContentLoaded', function () {
     success: function(data){
         list_of_streams = data;
         console.log(data);
+        console.log(data.streams);
+        console.log(data.streams[0]);
+        console.log(data.streams[0].game);
       },
       error: function(data){
         console.log("Error!");
