@@ -23,5 +23,14 @@ More app ideas
 
 		Give option to streamers if they want surpise me
 
-		
+		let choice of genre or want choice of game
+		X out stuff 
+		No games found when it does a combo of things such as pubg and puzzle
+
+		word sensitive when searching
+
+
+Chrome extension that uses twitch api
+
+	Break tasks
 
