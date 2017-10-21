@@ -47,11 +47,14 @@
     		<div>
     			
     			<form>
-    				<h3>I want to watch streamers with <input id="atLeast" type="text" placeholder="at least"> viewers to <input id="atMost" type="text" placeholder="at most"> viewers.<h3>
+    				
+    				<h3 id = "searchQuestion">I want to watch streamers with <input id="at_least" step="25"type="number" placeholder="at least" min="0"> viewers to <input id="at_most" step="25"type="number" placeholder="at most" min="1"> viewers.<h3>
+
+    					<!--<h3>I want to watch streamers with <select></select> viewers to <select></select> viewers.<h3>-->
 
 
-    				<input type="checkbox" id="dontCare">
-    				<input type="checkbox" id="">
+    				<p><input type="checkbox" id="dontCare">  I don't care! Give me a random streamer!</p>
+    				<p><input type="checkbox" id="smallStreams"> Give me smaller streamers! </p>
 
     			</form>	
     		</div>
