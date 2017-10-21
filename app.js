@@ -111,8 +111,8 @@ function showIndex() {
   */
   
 function findStream(){
-   var at_least = /*answer from "at least how many viewers"*/
-   var at_most = /*answer from "at most how many viewers"*/
+   var at_least = document.getElementById("at_least").innerHTML;
+   var at_most = docuument.getElementById("at_most").innerHTML;
    var total_streams = /*total streams ATM*/;
    var j = 0; //tracks # of streams <=500 viewers
    var views = [];
