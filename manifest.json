@@ -11,14 +11,11 @@
 	"browser_action": {
     
     "default_popup": "extension.html"
+  },
+
+  "background":{
+  	"scripts": ["background.js"]
   }
-/*
-	"background":{
-		"scripts": {"app.js"},
-		"persistent":false
 
-	}
-
-*/
 
 }

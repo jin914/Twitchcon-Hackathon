@@ -4,11 +4,12 @@
 	border: none;
 	text-align: center;
 	display: inline-block;
-	width: 90px;
+	width: 100px;
 	height: 50px;
 	padding: 0px;
 	outline: 0;
 	margin: 0px;
+	float: left;
 
 }
 .butt2 {
@@ -17,7 +18,7 @@
 	border: none;
 	text-align: center;
 	display: inline-block;
-	width: 90px;
+	width: 100px;
 	height: 50px;
 	padding: 0px;
 	margin: 0px;
@@ -30,7 +31,7 @@
 	border: none;
 	text-align: center;
 	display: inline-block;
-	width: 90px;
+	width: 100px;
 	height: 50px;
 	padding: 0px;
 	outline: 0;
@@ -46,6 +47,7 @@
 	width: 100%;
 	height: 50px;
 	display:block;
+	background-color: #6441a5;
 	
 
 }
