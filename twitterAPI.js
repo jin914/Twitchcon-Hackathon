@@ -1,3 +1,5 @@
+ var token = chrome.storage.sync.get({'authToken'});
+ 
  export var getUsers = (token, success) =>{
  	$.ajax({
  		method: 'GET',
