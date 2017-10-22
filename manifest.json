@@ -3,19 +3,27 @@
 	"name": "Surprise me!",
 	"version": "1.0",
 	"description": "twitch api extension",
-/*
-	"page_action": {
 
-		"default_popup": "extension.html"
-	}*/
 	"browser_action": {
-    
-    "default_popup": "extension.html"
-  },
+    	"default_popup": "extension.html"
+ 	 },
 
-  "background":{
-  	"scripts": ["background.js"]
-  }
+  	"permissions":
+  	[
+  		"storage",
+  		"tabs",
+  		"identity"
+  	],
+
+	 "background":{
+	  "scripts": ["background.js"],
+	  "persistent": true
+	 },
+
+	 "background":{
+	  "scripts": ["token.js"],
+	  "persistent": false
+	 }
 
 
 }
