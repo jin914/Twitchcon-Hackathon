@@ -5,19 +5,19 @@
  		headers:{
  			'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
  			'Authorization': 'OAuth ${token}'
- 		}
+ 		},
 
  		success
  	});
  }
 
- export var fetchStreams(games, success){
+ export var fetchStreams = (games, success) =>{
  	$.ajax({
  		method: 'GET',
  		url: 'https://api.twitch.tv/kraken/streams?game=${games}',
  		headers:{
  			'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
- 		}
+ 		},
 
  		success
  	});
@@ -25,13 +25,13 @@
  }
 
 
- export var fetchUserData = (username, success){
+ export var fetchUserData = (username, success) =>{
  	$.ajax({
  		method: 'GET',
  		url: 'https://api.twitch.tv/kraken/users/${username}',
  		headers:{
  			'Client-ID': 'm7yllxccpzvfrjfmkwrx52hfmqgtgj',
- 		}
+ 		},
 
  		success
  	});
